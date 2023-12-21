@@ -11,6 +11,8 @@ router.get('/allUsers',UsersCont.getAllUsers)
 
 router.delete('/deleteUser',UsersCont.deleteUserById)
 
+router.put('/UpdateUsers',UsersCont.updateUser)
+
 
 
 module.exports=router

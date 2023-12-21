@@ -78,6 +78,39 @@ exports.userCont = async (req, res) => {
       res.status(500).json({ message: 'Error deleting event' });
     }
   };
+
+
+  exports.updateUser = async (req, res) => {
+    const userUpdate = req.body;
+  
+    try {
+      const filter = { _id: userUpdate.objId }; // Assuming you're using MongoDB's _id field
+      const update = {
+        $set: {
+          email: userUpdate.email,
+          names: userUpdate.names,
+          course: userUpdate.course,
+          gradyr: userUpdate.gradyr,
+          type: userUpdate.type,
+        },
+      };
+  
+      // Assuming 'User' is the model for your collection
+      const updatedUser = await User.findOneAndUpdate(filter, update, {
+        new: true, // To get the updated document
+      });
+  
+      if (!updatedUser) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+  
   
   
   

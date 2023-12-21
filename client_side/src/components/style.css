@@ -749,6 +749,11 @@ align-items: center;
   100% { transform: rotate(360deg); }
 }
 
+.err-handl{
+
+  position: absolute;
+}
+
 
 
 

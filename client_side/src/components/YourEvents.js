@@ -46,7 +46,7 @@ function YourEvents() {
         return StringDate
     }
 
-    console.log('yourevents', events)
+   
 
     return (
 
@@ -70,7 +70,7 @@ function YourEvents() {
     :
     events.map((details)=>(
 
-                <div className='post'>
+                <div className='post' key={details._id}>
 
                     <div className='image'>
 

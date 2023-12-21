@@ -88,6 +88,45 @@ exports.eventsCont = async (req, res) => {
     }
 
   }
+
+
+
+  exports.updateEvent = async (req, res) => {
+    const eventUpdate = req.body;
+    console.log(eventUpdate)
+  
+    try {
+      const filter = { _id: eventUpdate.objId }; // Assuming you're using MongoDB's _id field
+      const update = {
+        $set: {
+          title: eventUpdate.title,
+          displayName: eventUpdate.displayName,
+          date: eventUpdate.date,
+          time: eventUpdate.time,
+          type: eventUpdate.type,
+          venue: eventUpdate.venue,
+          organiser: eventUpdate.organiser,
+        },
+      };
+  
+      // Assuming 'Event' is the model for your collection
+      const updatedEvent = await Event.findOneAndUpdate(filter, update, {
+        new: true, // To get the updated document
+      });
+  
+      if (!updatedEvent) {
+        console.log('error')
+        return res.status(404).json({ error: 'Event not found' });
+        
+      }
+  
+      res.status(200).json(updatedEvent);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+  
   
   
   

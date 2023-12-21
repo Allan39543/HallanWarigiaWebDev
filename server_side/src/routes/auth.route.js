@@ -21,12 +21,14 @@ router.get(
     (req, res) => {
 
 
-        // const userData = encodeURIComponent(JSON.stringify(req.user._json));
-        // const redirectUrl = `${process.env.CLIENT_URL}?userData=${userData}`;
+        const userData = encodeURIComponent(JSON.stringify(req.user._json));
+        const redirectUrl = `${process.env.CLIENT_URL}?userData=${userData}`;
 
-        // console.log("test", req.user._json);
+        console.log("test", req.user._json);
 
-        res.redirect(process.env.CLIENT_URL);
+        res.redirect(redirectUrl);
+
+		// res.redirect(process.env.CLIENT_URL);
     }
 );
 

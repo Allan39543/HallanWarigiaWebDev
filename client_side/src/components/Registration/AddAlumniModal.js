@@ -18,19 +18,27 @@ function AddAlumniModal({closeModal}){
           type:details.userType
           
         };
+
+        if(userDetails.email && userDetails.names && userDetails.course && userDetails.gradyr && userDetails.type)
+       {
         try {
           const response = await axios.post(
             `${process.env.REACT_APP_API_URL}/api/users/`,
             userDetails
           );
           
-          setDetails({email:"",names:"",userType:"",course:"",gradyr:"",loading:false}); 
+          setDetails({loading:false})
        
         } catch (error) {
-          setDetails({email:"",names:"",userType:"",course:"",gradyr:"",loading:false});
+          
         }
-      };
+      }
 
+      else{
+        setDetails({loading:false})
+      }
+    
+    }
       console.log(details)
 
     return(

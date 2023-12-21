@@ -70,7 +70,7 @@ function MyBkEvents() {
     :
     events.map((details)=>(
 
-                <div className='post'>
+                <div className='post' key={details._id}>
 
                     <div className='image'>
 

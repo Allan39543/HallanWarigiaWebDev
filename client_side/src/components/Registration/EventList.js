@@ -11,6 +11,10 @@ function EventList(props){
 
     const user = useContext(UserContext)
 
+    const [updateEventData, setUpdateEventData] = useState(null)
+
+    
+
     const[allEvents,setAllEvents]=useState([])
     const[loading,setLoading]=useState(true)
     const[dlt,setDlt]=useState({})
@@ -49,6 +53,13 @@ function EventList(props){
         fetchEvents()
 
     }, [])
+
+    const DateStringFormat = (dateObj) => {
+
+        const StringDate = new Date(dateObj).toLocaleDateString()
+
+        return StringDate
+    }
 
     const dltevent=async(id)=>{
 
@@ -120,6 +131,13 @@ function EventList(props){
   <div class="loading-spinner"></div>
 </div>
 
+
+        :
+
+        allEvents.length <= 0 ?
+
+        <h1 className="err-handl">No Events Registered</h1>
+
         :
 
     allEvents.map(details=>(
@@ -127,18 +145,21 @@ function EventList(props){
 
             <td>{details.title}</td>
             <td>{details.displayName}</td>
-            <td>{details.date}</td>
+            <td>{DateStringFormat(details.date)}</td>
             <td>{details.time}</td>
             <td>{details.type}</td>
             <td>{details.venue}</td>
             <td ><GrUpdate size="1.1em" className="center-td-content" onClick={() => {
   setUpdateEvent(true); 
+  setUpdateEventData(details)
   objlength(details._id); 
 }}
 /></td>
             <td ><AiTwotoneDelete size="1.1em" color="red" className="center-td-content" onClick={()=>dltevent(details._id)}/></td>
             
-            
+            {
+    updateEvent && <UpdateEvent closeModal={setUpdateEvent} eventData={updateEventData} />
+}
             
 
             </tr>
@@ -152,9 +173,7 @@ function EventList(props){
 
 </div>
 
-{
-    updateEvent && <UpdateEvent closeModal={setUpdateEvent} eventData={allEvents} />
-}
+
 
         </div>
     )

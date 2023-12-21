@@ -12,5 +12,7 @@ router.delete('/deleteEvent',EventCont.deleteEventById)
 
 router.get('/abtevents',EventCont.getAbtEvent)
 
+router.put('/UpdateEvent',EventCont.updateEvent)
+
 
 module.exports=router

@@ -14,6 +14,7 @@ function AlumniList(props){
     const [users,setUsers]=useState([])
     const [loading,setLoading]=useState(true)
     const [updateAlumni,setUpdateAlumni]=useState(false)
+    const[userUpdate,setUserUpdate]=useState(null)
 
     
 
@@ -124,7 +125,9 @@ function AlumniList(props){
             <td>{user.course}</td>
             <td>{user.gradyr}</td>
             <td ><GrUpdate size="1.1em" className="center-td-content" onClick={() => {
+
   setUpdateAlumni(true); 
+  setUserUpdate(user)
   objlength(user._id); 
 }}/></td>
             <td ><AiTwotoneDelete size="1.1em" color="red" className="center-td-content" onClick={()=>dltuser(user._id)}/></td>
@@ -142,7 +145,7 @@ function AlumniList(props){
 </div>
 
 {
-    updateAlumni && <UpdateAlumni closeModal={setUpdateAlumni} userData={users} id={objlength}/>
+    updateAlumni && <UpdateAlumni closeModal={setUpdateAlumni} userData={userUpdate} id={objlength}/>
 }
 
         </div>

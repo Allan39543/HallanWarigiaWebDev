@@ -4,11 +4,10 @@ import axios from 'axios'
 
 function UpdateAlumni(props){
 
-    const filteredUser = props.userData.filter(user => user._id === props.id);
 
-    console.log('user data',filteredUser)
+    console.log('user update',props.userData)
 
-    const[details,setDetails]=useState({email:"",names:"",userType:"",course:"",gradyr:"",loading:false})
+    const[details,setDetails]=useState({email:props.userData.email,names:props.userData.names,userType:props.userData.type,course:props.userData.course,gradyr:props.userData.gradyr,loading:false})
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
@@ -19,19 +18,22 @@ function UpdateAlumni(props){
           names: details.names,
           course:details.course,
           gradyr:details.gradyr,
-          type:details.userType
+          type:details.userType,
+          objId:props.userData._id
           
         };
         try {
-          const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/v1/users/`,
+          const response = await axios.put(
+            `${process.env.REACT_APP_API_URL}/api/UpdateUsers/`,
             userDetails
           );
+          props.closeModal(false)
+          setDetails({email:props.userData.email,names:props.userData.names,userType:props.userData.type,course:props.userData.course,gradyr:props.userData.gradyr,loading:false}); 
           
-          setDetails({email:"",names:"",userType:"",course:"",gradyr:"",loading:false}); 
        
         } catch (error) {
-          setDetails({email:"",names:"",userType:"",course:"",gradyr:"",loading:false});
+          setDetails({email:props.userData.email,names:props.userData.names,userType:props.userData.type,course:props.userData.course,gradyr:props.userData.gradyr,loading:false});
+          props.closeModal(false)
         }
       };
 
@@ -62,21 +64,21 @@ function UpdateAlumni(props){
                 <div className="form-details">
                 <label> Email</label>
 
-                <input type="email" onChange={e => setDetails({ ...details, email: e.target.value })}  required/>
+                <input type="email" value={details.email} onChange={e => setDetails({ ...details, email: e.target.value })}  required/>
                 </div>
 
                 <div className="form-details">
                 <label> Names </label>
                 
 
-                <input type="text" onChange={e => setDetails({ ...details, names: e.target.value })}  required/>
+                <input type="text" value={details.names} onChange={e => setDetails({ ...details, names: e.target.value })}  required/>
                 </div>
 
                 <div className="form-details">
 
                 <label> User Type </label>
                 
-                <input type="text" onChange={e => setDetails({ ...details, userType: e.target.value })}  required/>
+                <input type="text" value={details.userType}  onChange={e => setDetails({ ...details, userType: e.target.value })}  required/>
 
                 </div>
 
@@ -84,7 +86,7 @@ function UpdateAlumni(props){
 
                 <label> Course </label>
 
-                <input type="text" onChange={e => setDetails({ ...details, course: e.target.value })}  required/>
+                <input type="text" value={details.course}  onChange={e => setDetails({ ...details, course: e.target.value })}  required/>
 
                 </div>
 
@@ -92,14 +94,19 @@ function UpdateAlumni(props){
 
                 <label> Grad Year </label>
 
-                <input type="text" onChange={e => setDetails({ ...details, gradyr: e.target.value })}  required/>
+                <input type="text" value={details.gradyr}  onChange={e => setDetails({ ...details, gradyr: e.target.value })}  required/>
 
                 </div>
 
                 <div className="form-details">
-                <button type="submit">
-                    Register
-                </button>
+                <button type="submit" disabled={details.loading}>
+                {
+                  details.loading ? "Please Wait..."
+                  :
+                  "Update"
+              
+}
+              </button>
                 </div>
 
             </form>

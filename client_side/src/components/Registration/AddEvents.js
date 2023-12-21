@@ -24,16 +24,26 @@ function AddEvents({ closeModal }) {
       organiser:user.email
 
     };
+
+    if(eventDetails.title && eventDetails.displayName && eventDetails.date && eventDetails.time && eventDetails.type && eventDetails
+      .venue && eventDetails.organiser)
+      {
+
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/event/`,
         eventDetails
       );
 
-      setDetails({ title: "", displayName: "", date: "", time: "", type: "", venue: "", loading: false });
+      setDetails({loading: false })
+
     } catch (error) {
-      setDetails({ title: "", displayName: "", date: "", time: "", type: "", venue: "", loading: false });
+      
     }
+  }
+  else{
+    setDetails({loading: false })
+  }
   };
 
   console.log(details)
