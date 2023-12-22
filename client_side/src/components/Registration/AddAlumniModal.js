@@ -1,125 +1,124 @@
-import React,{useState} from "react";
-import {AiOutlineCloseCircle} from 'react-icons/ai'
+import React, { useState } from "react";
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 import axios from 'axios'
 
-function AddAlumniModal({closeModal}){
+function AddAlumniModal({ closeModal }) {
 
-    const[details,setDetails]=useState({email:"",names:"",userType:"",course:"",gradyr:"",loading:false})
+  const [details, setDetails] = useState({ email: "", names: "", userType: "", course: "", gradyr: "", loading: false })
 
-    const HandleSubmit = async (e) => {
-        e.preventDefault();
-        setDetails({ loading: true });
-    
-        const userDetails = {
-          email: details.email,
-          names: details.names,
-          course:details.course,
-          gradyr:details.gradyr,
-          type:details.userType
-          
-        };
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    setDetails({ loading: true });
 
-        if(userDetails.email && userDetails.names && userDetails.course && userDetails.gradyr && userDetails.type)
-       {
-        try {
-          const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/users/`,
-            userDetails
-          );
-          
-          setDetails({loading:false})
-       
-        } catch (error) {
-          
-        }
+    const userDetails = {
+      email: details.email,
+      names: details.names,
+      course: details.course,
+      gradyr: details.gradyr,
+      type: details.userType
+
+    };
+
+    if (userDetails.email && userDetails.names && userDetails.course && userDetails.gradyr && userDetails.type) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/users/`,
+          userDetails
+        );
+
+        setDetails({ loading: false })
+
+      } catch (error) {
+
       }
-
-      else{
-        setDetails({loading:false})
-      }
-    
     }
-      console.log(details)
 
-    return(
-        <div className="transparent-modal-wrapper">
-        <div className='close-modal' onClick={()=>closeModal(false)} >
+    else {
+      setDetails({ loading: false })
+    }
 
-<div className='close-text'>
-    Close
-</div>
+  }
+  console.log(details)
 
-<div className='close-icon'>
-    <AiOutlineCloseCircle size="1.5em" />
-</div>
+  return (
+    <div className="transparent-modal-wrapper">
+      <div className='close-modal' onClick={() => closeModal(false)} >
 
-</div>
+        <div className='close-text'>
+          Close
+        </div>
 
-<div className="form-wrapper">
+        <div className='close-icon'>
+          <AiOutlineCloseCircle size="1.5em" />
+        </div>
 
-    <div className="add-object">
+      </div>
 
-<h1>Add Alumni</h1>
+      <div className="form-wrapper">
 
-                <form onSubmit={HandleSubmit}>
+        <div className="add-object">
 
-                <div className="form-details">
-                <label> Email</label>
+          <h1>Add Alumni</h1>
 
-                <input type="email" onChange={e => setDetails({ ...details, email: e.target.value })}  required/>
-                </div>
+          <form onSubmit={HandleSubmit}>
 
-                <div className="form-details">
-                <label> Names </label>
-                
+            <div className="form-details">
+              <label> Email</label>
 
-                <input type="text" onChange={e => setDetails({ ...details, names: e.target.value })}  required/>
-                </div>
+              <input type="email" onChange={e => setDetails({ ...details, email: e.target.value })} required />
+            </div>
 
-                <div className="form-details">
+            <div className="form-details">
+              <label> Names </label>
 
-                <label> User Type </label>
-                
-                <input type="text" onChange={e => setDetails({ ...details, userType: e.target.value })} placeholder="Admin/user" required/>
 
-                </div>
+              <input type="text" onChange={e => setDetails({ ...details, names: e.target.value })} required />
+            </div>
 
-                <div className="form-details">
+            <div className="form-details">
 
-                <label> Course </label>
+              <label> User Type </label>
 
-                <input type="text" onChange={e => setDetails({ ...details, course: e.target.value })}  required/>
+              <input type="text" onChange={e => setDetails({ ...details, userType: e.target.value })} placeholder="Admin/user" required />
 
-                </div>
+            </div>
 
-                <div className="form-details">
+            <div className="form-details">
 
-                <label> Grad Year </label>
+              <label> Course </label>
 
-                <input type="text" onChange={e => setDetails({ ...details, gradyr: e.target.value })}  required/>
+              <input type="text" onChange={e => setDetails({ ...details, course: e.target.value })} required />
 
-                </div>
+            </div>
 
-                <div className="form-details">
-                <button type="submit">
+            <div className="form-details">
+
+              <label> Grad Year </label>
+
+              <input type="text" onChange={e => setDetails({ ...details, gradyr: e.target.value })} required />
+
+            </div>
+
+            <div className="form-details">
+              <button type="submit">
                 {
                   details.loading ? "Please Wait..."
-                  :
-                  "Register"
-              
-}
-                </button>
-                </div>
+                    :
+                    "Register"
 
-            </form>
+                }
+              </button>
+            </div>
 
-    </div>
-
-
-</div>
+          </form>
 
         </div>
-    )
+
+
+      </div>
+
+    </div>
+  )
 }
 
 export default AddAlumniModal

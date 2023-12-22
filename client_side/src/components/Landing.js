@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import "./style.css"
 import "./responsive.css"
 import bgvideo from '../SiteMedia/bg2.mp4'
-import {BiDownArrow} from 'react-icons/bi'
+import { BiDownArrow } from 'react-icons/bi'
 import Header from './Header'
 import TopFourEvents from './TopFourEvents'
 
@@ -12,29 +12,29 @@ function Landing() {
 
         <Fragment>
 
-        <div className='landing-container'>
+            <div className='landing-container'>
 
-            {/* <Header /> */}
+                {/* <Header /> */}
 
-            <video  autoPlay muted loop>
-                <source src={bgvideo} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            
-            <div className="overlay"></div>
+                <video autoPlay muted loop>
+                    <source src={bgvideo} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
 
-            <div className='landing-text'>
+                <div className="overlay"></div>
 
-                <h1>Alumni Connect</h1>
+                <div className='landing-text'>
 
-                <p>Explore, Experience, Enjoy: Events That Inspire</p>
+                    <h1>Alumni Connect</h1>
 
-                <div className='arrow-down'><BiDownArrow size="5em"/></div>
+                    <p>Explore, Experience, Enjoy: Events That Inspire</p>
 
+                    <div className='arrow-down'><BiDownArrow size="5em" /></div>
+
+                </div>
             </div>
-        </div>
 
-        <TopFourEvents />
+            <TopFourEvents />
 
         </Fragment>
     )

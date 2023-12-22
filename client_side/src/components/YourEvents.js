@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect,useContext } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import event1 from '../SiteMedia/event8.jpeg'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import { UserContext } from '../App'
@@ -11,7 +11,7 @@ function YourEvents() {
 
     const [events, setAllEvents] = useState([])
     const [loading, setLoading] = useState(true)
-    
+
 
     const fetchEvents = async () => {
 
@@ -46,7 +46,7 @@ function YourEvents() {
         return StringDate
     }
 
-   
+
 
     return (
 
@@ -59,43 +59,43 @@ function YourEvents() {
                 <h1 className='top-eventsh1' id='top-eventsh1'>Your Events</h1>
 
 
-{
-    loading? 
-    
-<div class='loading-status-event'>
-  <h1>Loading...</h1>
-  <div class="loading-spinner"></div>
-</div>
+                {
+                    loading ?
 
-    :
-    events.map((details)=>(
+                        <div class='loading-status-event'>
+                            <h1>Loading...</h1>
+                            <div class="loading-spinner"></div>
+                        </div>
 
-                <div className='post' key={details._id}>
+                        :
+                        events.map((details) => (
 
-                    <div className='image'>
+                            <div className='post' key={details._id}>
 
-                        <img src={event1} alt="event-img" />
+                                <div className='image'>
 
-                    </div>
+                                    <img src={event1} alt="event-img" />
 
-                    <div className='event-details'>
+                                </div>
 
-                        <h3>{details.eventId.displayName}</h3>
+                                <div className='event-details'>
 
-                        <h3>{DateStringFormat(details.eventId.date)}</h3>
+                                    <h3>{details.eventId.displayName}</h3>
 
-                        <h3>{details.eventId.time}</h3>
+                                    <h3>{DateStringFormat(details.eventId.date)}</h3>
 
-
-
-                    </div>
+                                    <h3>{details.eventId.time}</h3>
 
 
 
-                </div>
-      )  )
+                                </div>
 
-}
+
+
+                            </div>
+                        ))
+
+                }
 
 
 

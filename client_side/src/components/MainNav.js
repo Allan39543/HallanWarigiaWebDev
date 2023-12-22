@@ -51,16 +51,16 @@ function MainNav({ closeMenu }) {
                         About Us
                     </div>
                 </ComponentLinks >
-                    {
-                        user &&
-                <ComponentLinks to="/registration" onClick={() => closeMenu(false)}>
+                {
+                    user &&
+                    <ComponentLinks to="/registration" onClick={() => closeMenu(false)}>
 
-                    <div className='links'>
-                        Registration
-                    </div>
+                        <div className='links'>
+                            Registration
+                        </div>
 
-                </ComponentLinks >
-                    }
+                    </ComponentLinks >
+                }
                 {
                     user &&
                     <ComponentLinks to="/events" onClick={() => closeMenu(false)}>
@@ -74,31 +74,31 @@ function MainNav({ closeMenu }) {
 
 
 
-{
+                {
                     user &&
                     <ComponentLinks to="/yourevents" onClick={() => closeMenu(false)}>
 
                         <div className='links'>
-                           Your Events
+                            Your Events
                         </div>
 
                     </ComponentLinks >
                 }
 
-{
+                {
                     user &&
                     <ComponentLinks to="/savedevents" onClick={() => closeMenu(false)}>
 
                         <div className='links'>
-                           Saved Events
+                            Saved Events
                         </div>
 
                     </ComponentLinks >
 
-                    
+
                 }
 
-{
+                {
                     user &&
                     <div className='sign-out-details' style={{ background: "white" }}>
                         <button onClick={logOut} className="sign-out">Sign Out</button>
@@ -119,7 +119,7 @@ function ComponentLinks({ to, children, ...props }) {
     return (
 
 
-        <Link to={to} {...props} className={isActive ? 'main-active' : ""}>
+        <Link to={to} {...props} >
             {children}
         </Link>
 

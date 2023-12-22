@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect,useContext } from 'react'
+import React, { Fragment, useState, useEffect, useContext } from 'react'
 import event1 from '../SiteMedia/event8.jpeg'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import { UserContext } from '../App'
@@ -11,7 +11,7 @@ function MyBkEvents() {
 
     const [events, setAllEvents] = useState([])
     const [loading, setLoading] = useState(true)
-    
+
 
     const fetchEvents = async () => {
 
@@ -59,43 +59,43 @@ function MyBkEvents() {
                 <h1 className='top-eventsh1' id='top-eventsh1'>My Saved Events</h1>
 
 
-{
-    loading? 
+                {
+                    loading ?
 
-    <div class='loading-status-event'>
-  <h1>Loading...</h1>
-  <div class="loading-spinner"></div>
-</div>
+                        <div class='loading-status-event'>
+                            <h1>Loading...</h1>
+                            <div class="loading-spinner"></div>
+                        </div>
 
-    :
-    events.map((details)=>(
+                        :
+                        events.map((details) => (
 
-                <div className='post' key={details._id}>
+                            <div className='post' key={details._id}>
 
-                    <div className='image'>
+                                <div className='image'>
 
-                        <img src={event1} alt="event-img" />
+                                    <img src={event1} alt="event-img" />
 
-                    </div>
+                                </div>
 
-                    <div className='event-details'>
+                                <div className='event-details'>
 
-                        <h3>{details.eventId.displayName}</h3>
+                                    <h3>{details.eventId.displayName}</h3>
 
-                        <h3>{DateStringFormat(details.eventId.date)}</h3>
+                                    <h3>{DateStringFormat(details.eventId.date)}</h3>
 
-                        <h3>{details.eventId.time}</h3>
-
-
-
-                    </div>
+                                    <h3>{details.eventId.time}</h3>
 
 
 
-                </div>
-      )  )
+                                </div>
 
-}
+
+
+                            </div>
+                        ))
+
+                }
 
 
 

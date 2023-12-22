@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from '../../App'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import axios from 'axios'
@@ -8,7 +8,7 @@ function AddEvents({ closeModal }) {
   const user = useContext(UserContext)
 
   const [details, setDetails] = useState({ title: "", displayName: "", venue: "", date: "", time: "", type: "", loading: false })
-  
+
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -21,29 +21,28 @@ function AddEvents({ closeModal }) {
       time: details.time,
       type: details.type,
       venue: details.venue,
-      organiser:user.email
+      organiser: user.email
 
     };
 
-    if(eventDetails.title && eventDetails.displayName && eventDetails.date && eventDetails.time && eventDetails.type && eventDetails
-      .venue && eventDetails.organiser)
-      {
+    if (eventDetails.title && eventDetails.displayName && eventDetails.date && eventDetails.time && eventDetails.type && eventDetails
+      .venue && eventDetails.organiser) {
 
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/event/`,
-        eventDetails
-      );
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/event/`,
+          eventDetails
+        );
 
-      setDetails({loading: false })
+        setDetails({ loading: false })
 
-    } catch (error) {
-      
+      } catch (error) {
+
+      }
     }
-  }
-  else{
-    setDetails({loading: false })
-  }
+    else {
+      setDetails({ loading: false })
+    }
   };
 
   console.log(details)
@@ -107,7 +106,7 @@ function AddEvents({ closeModal }) {
 
 
               <select id="selectInput" name="selectInput" onChange={e => setDetails({ ...details, type: e.target.value })} >
-              <option value="">Select</option>
+                <option value="">Select</option>
                 <option value="professional">Professional Development</option>
                 <option value="networking">networking</option>
                 <option value="campusevents">campus events</option>
@@ -131,10 +130,10 @@ function AddEvents({ closeModal }) {
               <button type="submit" disabled={details.loading}>
                 {
                   details.loading ? "Please Wait..."
-                  :
-                  "Register"
-              
-}
+                    :
+                    "Register"
+
+                }
               </button>
             </div>
 

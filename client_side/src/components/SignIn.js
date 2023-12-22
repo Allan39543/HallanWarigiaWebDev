@@ -16,18 +16,18 @@ function SignIn() {
 
         <div className="sign-in">
             <Link to="/">
-                  <div className='close-modal' id="close-modal" >
+                <div className='close-modal' id="close-modal" >
 
-<div className='close-text'>
-  Close
-</div>
+                    <div className='close-text'>
+                        Close
+                    </div>
 
-<div className='close-icon'>
-  <AiOutlineCloseCircle size="1.5em" />
-</div>
+                    <div className='close-icon'>
+                        <AiOutlineCloseCircle size="1.5em" />
+                    </div>
 
-</div>
-</Link>
+                </div>
+            </Link>
 
             {
                 user && <h1>Switch Accounts</h1>
