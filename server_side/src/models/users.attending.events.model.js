@@ -2,18 +2,16 @@ const mongoose = require('mongoose');
 
 const userAttendSchema = new mongoose.Schema({
 
-  email:String,
+  email: String,
   eventId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Event', 
+    ref: 'Event',
   }
-  
+
 });
 
-  
 
-
-const UserAttend= mongoose.model('UserAttendingEvents', userAttendSchema);
+const UserAttend = mongoose.model('UserAttendingEvents', userAttendSchema);
 
 module.exports = UserAttend;
 

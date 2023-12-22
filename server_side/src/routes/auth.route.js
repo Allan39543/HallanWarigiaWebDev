@@ -1,15 +1,15 @@
-const express=require("express")
-const router=express.Router()
+const express = require("express")
+const router = express.Router()
 const passport = require("passport")
 // const UsersModels=require("../models/users.model")
 // const {IP2Location }= require('ip2location-nodejs');
 // const http=require("http")
 
-const authController=require("../controllers/auth.controller")
+const authController = require("../controllers/auth.controller")
 
-router.get("/login/success",authController.loginSuccess)
+router.get("/login/success", authController.loginSuccess)
 
-router.get("/login/failed",authController.loginFailed)
+router.get("/login/failed", authController.loginFailed)
 
 router.get("/google", passport.authenticate("google", ["profile", "email"]));
 
@@ -28,17 +28,17 @@ router.get(
 
         res.redirect(redirectUrl);
 
-		// res.redirect(process.env.CLIENT_URL);
+        // res.redirect(process.env.CLIENT_URL);
     }
 );
 
 
 
-router.get("/logout",authController.logout)
+router.get("/logout", authController.logout)
 
 
 
-module.exports=router
+module.exports = router
 
 
 

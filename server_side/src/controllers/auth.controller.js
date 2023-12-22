@@ -1,9 +1,9 @@
 
-exports.loginSuccess= (req, res) => {
+exports.loginSuccess = (req, res) => {
 
-       
 
-		const userDataa = req.session.userData;
+
+	const userDataa = req.session.userData;
 
 
 	if (req.user) {
@@ -19,19 +19,19 @@ exports.loginSuccess= (req, res) => {
 };
 
 
-exports.loginFailed=(req, res) => {
+exports.loginFailed = (req, res) => {
 	res.status(401).json({
 		error: true,
 		message: "Log in failure",
 	});
 }
 
-exports.logout=(req, res) => {
+exports.logout = (req, res) => {
 	req.logout();
 	res.redirect(process.env.CLIENT_URL);
 }
 
-exports.postshome=(req,res)=>{
+exports.postshome = (req, res) => {
 	res.send("Hello Man")
 
 	console.log("allano")
